@@ -1,0 +1,21 @@
+{
+  "name": "proj-8",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass scss:assets/css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BaoNe2204/proj8.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BaoNe2204/proj8/issues"
+  },
+  "homepage": "https://github.com/BaoNe2204/proj8#readme",
+  "description": ""
+}
