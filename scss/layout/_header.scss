@@ -45,8 +45,10 @@
     }
 
     @include abstracts.breakpoint(lg) {
-        display: none;
-        margin-left: 50px;
+        position: fixed;
+        inset: 0 50% 0 0;
+        background: orange;
+        margin-left: 0;
     }
 
     &__list {

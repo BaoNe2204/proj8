@@ -1,8 +1,10 @@
+@use "../abstracts";
+
 .dropdown {
     position: absolute;
     left: 0;
     padding-top: 54px;
-    // display: none;
+    display: none;
     width: min(1240px, 100%);
 
     &__inner {
@@ -28,11 +30,13 @@
 }
 
 .top-menu {
+    --main-column-width: 292px;
+    --max-inner-height:calc(min(582px, 100vh - 158px) - var(--inner-padding) * 2);
     position: relative;
-    width: 292px;
 
     &__main {
-        max-height: calc(min(582px, 100vh - 158px) - var(--inner-padding) * 2);
+        width: var(--main-column-width);
+        height: var(--max-inner-height);
         border-right: 1px solid var(--top-menu-border-color);
         overflow-y: auto;
     }
@@ -43,11 +47,19 @@
     display: flex;
     gap: 14px;
 
+    +.menu-column {
+        margin-top: 22px;
+    }
+
     &__icon {
         position: relative;
         flex-shrink: 0;
         width: 36px;
         height: 36px;
+
+        @include abstracts.breakpoint(xl) {
+            display: none;
+        }
     }
 
     &__content {
@@ -55,18 +67,18 @@
     }
 
     &__icon-1 {
-        width: 36px;
-        height: 36px;
-        object-fit: cover;
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
     }
 
     &__icon-2 {
         position: absolute;
-        bottom: -6px;
-        right: -3px;
+        bottom: -5px;
+        right: 0;
         height: 24px;
         width: 24px;
-        object-fit: cover;
+        object-fit: contain;
         filter: var(--dropdown--icon-color);
     }
 
@@ -81,6 +93,19 @@
         margin-top: 19px;
     }
 
+    &__item {
+        
+        &--active .sub-menu {
+            display: grid;
+        }
+    }
+
+    &-active>&__link,
+    &__item:hover>&__link {
+        font-weight: 500;
+        color: #0071DC;
+    }
+
     &__link {
         display: block;
         padding: 7px 0px;
@@ -88,12 +113,29 @@
         font-weight: 400;
         line-height: 142.857%;
 
-        &:hover {
-            font-weight: 500;
-            color: #0071DC;
-        }
+    }
+
+    &__list li:last-child .menu-column__link {
+        padding-bottom: 0;
     }
 }
-.sub-menu{
+
+.sub-menu {
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+
     position: absolute;
+    inset: 0 0 0 var(--main-column-width);
+    gap: 30px;
+    padding-left: var(--inner-padding);
+    overflow-y: auto;
+
+    &--not-main {
+        display: grid;
+        position: initial;
+        inset: initial;
+        grid-template-columns: repeat(4, 1fr);
+        height: var(--max-inner-height);
+        padding-left: 0;
+    }
 }
